@@ -6,5 +6,7 @@ import (
 )
 
 func watch() {
+// Watch : mock function
+func Watch() {
 	fmt.Println(time.Now())
 }

@@ -5,5 +5,10 @@ import (
 )
 
 func main() {
+	watch.Start()
 	watch.Watch()
+	watch.GetLapTime()
+	watch.Stop()
+	watch.GetDuration()
+	watch.GetLapTime()
 }

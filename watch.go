@@ -26,7 +26,12 @@ func Stop() {
 	ep = time.Now()
 }
 
-// GetDuration : show time since start
-func GetDuration() {
+// GetLapTime : show time since start
+func GetLapTime() {
 	fmt.Println(time.Since(sp))
+}
+
+// GetDuration : show duration between start and end
+func GetDuration() {
+	fmt.Println(ep.Sub(sp))
 }

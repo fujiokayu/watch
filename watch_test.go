@@ -60,19 +60,9 @@ func TestFailed_1(t *testing.T) {
 	fmt.Println("TestFailed_1 : " + bar)
 	myWatch := watch.Start()
 
-	err := myWatch.GetLapTime()
-	if err != nil {
-		t.Fatal("failed test")
-	}
-
-	err = myWatch.GetDuration()
+	err := myWatch.GetDuration()
 	if err != nil {
 		// this function should be fail
 		fmt.Println(err)
-	}
-
-	err = myWatch.GetLapTime()
-	if err != nil {
-		t.Fatal("failed test")
 	}
 }

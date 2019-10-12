@@ -10,6 +10,7 @@ type Duration int64
 
 var sp time.Time
 var ep time.Time
+var lp time.Time
 
 // Watch : mock function
 func Watch() {
@@ -19,6 +20,7 @@ func Watch() {
 // Start : mock function
 func Start() {
 	sp = time.Now()
+	lp = sp
 }
 
 // Stop : mock function
@@ -29,6 +31,7 @@ func Stop() {
 // GetLapTime : show time since start
 func GetLapTime() {
 	fmt.Println(time.Since(sp))
+	fmt.Println(time.Since(lp))
 }
 
 // GetDuration : show duration between start and end

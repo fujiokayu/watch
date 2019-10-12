@@ -1,40 +1,83 @@
 package watch
 
 import (
+	"errors"
 	"fmt"
 	"time"
 )
 
-// Duration is exported gloval value
-type Duration int64
+// Watch : struct of Watch
+type Watch struct {
+	sp time.Time
+	ep time.Time
+	lp time.Time
+}
 
-var sp time.Time
-var ep time.Time
-var lp time.Time
+// manage instance as a singleton
+var instance *Watch
 
-// Watch : mock function
-func Watch() {
+// Now : show date and time
+func Now() {
 	fmt.Println(time.Now().Format("2006-01-02 15:04:05.000"))
 }
 
-// Start : mock function
-func Start() {
-	sp = time.Now()
-	lp = sp
+// Start : initialize watch
+func Start() *Watch {
+	if instance != nil {
+		return instance
+	}
+
+	now := time.Now()
+	myWatch := &Watch{
+		sp: now,
+		lp: now,
+	}
+
+	return myWatch
 }
 
-// Stop : mock function
-func Stop() {
-	ep = time.Now()
+// Stop : stop this watch
+func (watch *Watch) Stop() {
+	watch.ep = time.Now()
 }
 
-// GetLapTime : show time since start
-func GetLapTime() {
-	fmt.Println(time.Since(sp))
-	fmt.Println(time.Since(lp))
+/*
+func (watch *Watch) Reset() error {
+	if instance == nil {
+		return errors.New("Error Reset(): watch isn't initialized")
+	}
+
+	now := time.Now()
+	watch = &Watch{
+		sp: now,
+		lp: now,
+		ep: time.Time,
+	}
+}
+*/
+
+// GetLapTime : show the lap time
+func (watch *Watch) GetLapTime() error {
+	if watch.lp.IsZero() {
+		return errors.New("Error GetLapTime(): watch isn't started")
+	}
+
+	temp := time.Now()
+	fmt.Println(temp.Sub(watch.lp))
+	watch.lp = temp
+
+	return nil
 }
 
 // GetDuration : show duration between start and end
-func GetDuration() {
-	fmt.Println(ep.Sub(sp))
+func (watch *Watch) GetDuration() error {
+	if watch.sp.IsZero() {
+		return errors.New("Error GetDuration(): watch isn't started")
+	}
+	if watch.ep.IsZero() {
+		return errors.New("Error GetDuration(): watch isn't stoped")
+	}
+
+	fmt.Println(watch.ep.Sub(watch.sp))
+	return nil
 }

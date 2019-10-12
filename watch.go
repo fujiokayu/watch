@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// Watch : struct of Watch
+// Watch is struct of Watch
 type Watch struct {
 	sp time.Time
 	ep time.Time
@@ -16,12 +16,12 @@ type Watch struct {
 // manage instance as a singleton
 var instance *Watch
 
-// Now : show date and time
+// Now is showing date and time
 func Now() {
 	fmt.Println(time.Now().Format("2006-01-02 15:04:05.000"))
 }
 
-// Start : initialize watch
+// Start function initialize watch
 func Start() *Watch {
 	if instance != nil {
 		return instance
@@ -36,7 +36,7 @@ func Start() *Watch {
 	return myWatch
 }
 
-// Stop : stop this watch
+// Stop function stop this watch
 func (watch *Watch) Stop() {
 	watch.ep = time.Now()
 }
@@ -56,7 +56,7 @@ func (watch *Watch) Reset() error {
 }
 */
 
-// GetLapTime : show the lap time
+// GetLapTime is showing the lap time
 func (watch *Watch) GetLapTime() error {
 	if watch.lp.IsZero() {
 		return errors.New("Error GetLapTime(): watch isn't started")
@@ -69,7 +69,7 @@ func (watch *Watch) GetLapTime() error {
 	return nil
 }
 
-// GetDuration : show duration between start and end
+// GetDuration is showing duration between start and end
 func (watch *Watch) GetDuration() error {
 	if watch.sp.IsZero() {
 		return errors.New("Error GetDuration(): watch isn't started")

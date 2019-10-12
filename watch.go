@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// Watch is struct of Watch
+// Watch is the struct of Watch
 type Watch struct {
 	sp time.Time
 	ep time.Time

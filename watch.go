@@ -13,7 +13,7 @@ var ep time.Time
 
 // Watch : mock function
 func Watch() {
-	fmt.Println(time.Now())
+	fmt.Println(time.Now().Format("2006-01-02 15:04:05.000"))
 }
 
 // Start : mock function

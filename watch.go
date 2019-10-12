@@ -8,9 +8,9 @@ import (
 
 // Watch is the struct of Watch
 type Watch struct {
-	sp time.Time
-	ep time.Time
-	lp time.Time
+	Sp time.Time
+	Ep time.Time
+	Lp time.Time
 }
 
 // manage instance as a singleton
@@ -29,8 +29,8 @@ func Start() *Watch {
 
 	now := time.Now()
 	myWatch := &Watch{
-		sp: now,
-		lp: now,
+		Sp: now,
+		Lp: now,
 	}
 
 	return myWatch
@@ -38,7 +38,7 @@ func Start() *Watch {
 
 // Stop function stop this watch
 func (watch *Watch) Stop() {
-	watch.ep = time.Now()
+	watch.Ep = time.Now()
 }
 
 /*
@@ -58,26 +58,26 @@ func (watch *Watch) Reset() error {
 
 // GetLapTime is showing the lap time
 func (watch *Watch) GetLapTime() error {
-	if watch.lp.IsZero() {
+	if watch.Lp.IsZero() {
 		return errors.New("Error GetLapTime(): watch isn't started")
 	}
 
 	temp := time.Now()
-	fmt.Println(temp.Sub(watch.lp))
-	watch.lp = temp
+	fmt.Println(temp.Sub(watch.Lp))
+	watch.Lp = temp
 
 	return nil
 }
 
 // GetDuration is showing duration between start and end
 func (watch *Watch) GetDuration() error {
-	if watch.sp.IsZero() {
+	if watch.Sp.IsZero() {
 		return errors.New("Error GetDuration(): watch isn't started")
 	}
-	if watch.ep.IsZero() {
+	if watch.Ep.IsZero() {
 		return errors.New("Error GetDuration(): watch isn't stoped")
 	}
 
-	fmt.Println(watch.ep.Sub(watch.sp))
+	fmt.Println(watch.Ep.Sub(watch.Sp))
 	return nil
 }

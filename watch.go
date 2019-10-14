@@ -28,15 +28,15 @@ func Start() *Watch {
 	}
 
 	now := time.Now()
-	myWatch := &Watch{
+	instance = &Watch{
 		Sp: now,
 		Lp: now,
 	}
 
-	return myWatch
+	return instance
 }
 
-// Stop function stop this watch
+// Stop function will stop this watch
 func (watch *Watch) Stop() {
 	watch.Ep = time.Now()
 }

@@ -1,2 +1,3 @@
+# [WIP]package watch
 
-[GoDoc](https://godoc.org/github.com/fujiokayu/watch)
+see [GoDoc: package watch](https://godoc.org/github.com/fujiokayu/watch).

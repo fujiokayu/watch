@@ -38,6 +38,18 @@ func ExampleWatch() {
 	}
 }
 
+func TestFailed_1(t *testing.T) {
+
+	fmt.Println("TestFailed_1 : " + bar)
+	myWatch := watch.Start()
+
+	err := myWatch.GetDuration()
+	if err == nil {
+		// this function should be fail
+		t.Fatal("failed test")
+	}
+}
+
 func TestSuccess_1(t *testing.T) {
 	fmt.Println("TestSuccess_1: " + bar)
 
@@ -61,14 +73,13 @@ func TestSuccess_1(t *testing.T) {
 	}
 }
 
-func TestFailed_1(t *testing.T) {
+func TestSuccess_2(t *testing.T) {
+	fmt.Println("TestSuccess_2: " + bar)
 
-	fmt.Println("TestFailed_1 : " + bar)
 	myWatch := watch.Start()
+	secondWatch := watch.Start()
 
-	err := myWatch.GetDuration()
-	if err == nil {
-		// this function should be fail
-		t.Fatal("failed test")
+	if myWatch.Sp != secondWatch.Sp {
+		t.Fatal("failed test. the instance will create just once")
 	}
 }
